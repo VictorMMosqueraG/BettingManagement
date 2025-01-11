@@ -41,11 +41,17 @@ class UserController extends Controller{
             'balance' => $request->balance,
         ]);
 
-        return response()->json($user);
+        session()->flash('success', 'Usuario creado correctamente.');
+        return redirect()->route('users.create');//COMEBACK: Redirect to the other form
     }
 
     //NOTE: method to show the form
     public function create(){
         return view('Users.create'); //Load the view
+    }
+
+    public function edit($id){
+        $user = User::findOrFail($id); // Load the user by id
+        return view('Users.update', compact('user')); // Load the view with the user
     }
 }

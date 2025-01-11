@@ -19,5 +19,8 @@ Route::get('/', function () {
 
 use App\Http\Controllers\UserController;
 
+//-----Users
 Route::get('users/create', [UserController::class, 'create'])->name('users.create');//Show forms
 Route::post('users', [UserController::class, 'store'])->name('users.store');
+Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
