@@ -18,6 +18,9 @@
             <li class="users-link">
                 <a href="{{ route('users.create') }}"><i class="fas fa-user-plus"></i> Registrar Usuario</a>
             </li>
+            <li class="users-link">
+                <a href="{{ route('users.select') }}"><i class="fas fa-user-plus"></i> Actualizar Usuario</a>
+            </li>
             <li class="events-link">
                 <a href="{{ route('sportsevents.create') }}"><i class="fas fa-calendar-plus"></i> Crear Evento</a>
             </li>

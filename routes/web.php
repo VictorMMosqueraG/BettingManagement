@@ -42,3 +42,4 @@ Route::get('/bets/{id}/update', [BetController::class, 'updateStatus'])->name('b
 
 // Ruta para seleccionar un usuario
 Route::get('select-user', [BetController::class, 'selectUser'])->name('selectUser');
+Route::get('/users/select', [UserController::class, 'select'])->name('users.select');

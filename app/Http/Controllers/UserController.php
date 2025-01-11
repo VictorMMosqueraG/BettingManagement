@@ -60,4 +60,9 @@ class UserController extends Controller{
         $user = User::findOrFail($id); // Load the user by id
         return view('Users.update', compact('user')); // Load the view with the user
     }
+
+    public function select() {
+        $users = User::all();
+        return view('Users.select', compact('users'));
+    }
 }
