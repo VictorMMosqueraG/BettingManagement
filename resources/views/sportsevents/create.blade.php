@@ -9,19 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-
-    <!-- Barra de Navegación -->
-    <nav style="background-color: #4CAF50; padding: 10px;">
-        <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden;">
-            <li style="float: left; margin-right: 20px;">
-                <a href="{{ route('sportsevents.create') }}" style="color: white; text-decoration: none; font-size: 18px;">Crear Evento</a>
-            </li>
-            <li style="float: left; margin-right: 20px;">
-                <a href="{{ route('sportsevents.index') }}" style="color: white; text-decoration: none; font-size: 18px;">Ver Eventos</a>
-            </li>
-        </ul>
-    </nav>
-
     <div style="text-align: center; padding: 50px;">
         <h1>Crear un Nuevo Evento Deportivo</h1>
 

@@ -88,10 +88,9 @@ class BetController extends Controller{
         //get the user
         $user = User::findOrFail($user_id);
 
-        //get the answers of the user
         $bets = Bet::join('sports_events', 'bets.event_id', '=', 'sports_events.id')
         ->where('bets.user_id', $user->id)
-        ->select('bets.*', 'sports_events.name as event_name') // Traemos el nombre del evento
+        ->select('bets.*', 'sports_events.name as event_name')
         ->get();
 
         //show the answers
