@@ -33,4 +33,33 @@ class UserControllerTest extends TestCase{
         //verify that the user was created in the database
         $this->assertDatabaseHas('users', $data);
     }
+
+    /** @test */
+    public function it_updates_a_user(){
+
+        // Create a user
+        $user = User::factory()->create();
+
+        // MockData for update
+        $data = [
+            'name' => 'Jane Doe',
+            'email' => 'janedoe@example.com',
+            'balance' => 200.75
+        ];
+
+        // Send a PUT request to the API
+        $response = $this->putJson('/api/users/' . $user->id, $data);
+
+        // Verify that the response has a 200 status code
+        $response->assertStatus(200)
+            ->assertJson([
+                'id' => $user->id,
+                'name' => 'Jane Doe',
+                'email' => 'janedoe@example.com',
+                'balance' => 200.75
+            ]);
+
+        // Verify that the user was updated in the database
+        $this->assertDatabaseHas('users', $data);
+    }
 }
