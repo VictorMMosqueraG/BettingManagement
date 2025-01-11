@@ -31,3 +31,4 @@ Route::get('sports-events', [SportsEventController::class, 'index']);
 
 //------BET-----
 Route::post('bets', [BetController::class, 'store']);
+Route::get('bets/user/{user_id}', [BetController::class, 'index']);

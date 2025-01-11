@@ -40,4 +40,14 @@ class BetController extends Controller{
         return response()->json($bet, 201);
     }
 
+    //List Bets
+    public function index($user_id, Request $request){
+        $query = Bet::where('user_id', $user_id);
+
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        }
+
+        return response()->json($query->get());
+    }
 }
