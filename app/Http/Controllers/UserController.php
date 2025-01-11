@@ -24,4 +24,23 @@ class UserController extends Controller{
         return response()->json($user, 201);
     }
 
+    //NOTE: Update user
+    public function update(Request $request, $id){
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'balance' => 'required|numeric',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'balance' => $request->balance,
+        ]);
+
+        return response()->json($user);
+    }
+
 }
