@@ -21,7 +21,11 @@ class SportsEventController extends Controller{
             'sport_type' => $request->sport_type,
         ]);
 
-        return response()->json($event, 201);
+        session()->flash('success', 'Evento creado correctamente.');
+
+        sleep(2);//Simulate a delay
+
+        return redirect()->route('welcome');
     }
 
 
@@ -29,6 +33,21 @@ class SportsEventController extends Controller{
     public function index(){
         $events = SportsEvent::withCount('bets')->get();
         return response()->json($events);
+    }
+
+
+    //NOTE: method by view
+    public function create(){
+        return view('sportsevents.create'); //view show form to create new event
+    }
+
+
+    public function indexView(){
+        //get all events with bets
+        $events = SportsEvent::withCount('bets')->get();
+
+        //show view with events
+        return view('sportsevents.index', compact('events'));
     }
 
 }
