@@ -22,7 +22,10 @@ class UserController extends Controller{
         ]);
 
         session()->flash('success', 'Usuario creado correctamente.');
-        return redirect()->route('users.create');//COMEBACK: Redirect to the other form
+
+        sleep(2);//Simulate a delay
+
+        return redirect()->route('welcome');
     }
 
     //NOTE: Update user
@@ -42,7 +45,10 @@ class UserController extends Controller{
         ]);
 
         session()->flash('success', 'Usuario creado correctamente.');
-        return redirect()->route('users.create');//COMEBACK: Redirect to the other form
+
+        sleep(2);// Simulate a delay
+
+        return redirect()->route('welcome');
     }
 
     //NOTE: method to show the form

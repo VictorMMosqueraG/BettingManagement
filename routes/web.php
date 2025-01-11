@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 use App\Http\Controllers\UserController;
 
-//-----Users
+//-----User
 Route::get('users/create', [UserController::class, 'create'])->name('users.create');//Show forms
 Route::post('users', [UserController::class, 'store'])->name('users.store');
 Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
