@@ -12,22 +12,38 @@ class BetControllerTest extends TestCase{
     use RefreshDatabase;
 
     /** @test */
-    public function test_it_creates_a_bet()
-    {
-        $user = User::factory()->create();
-        $sportsEvent = SportsEvent::factory()->create();
+    public function it_creates_a_bet(){
+        $user = User::factory()->create(['balance' => 100.00]);
 
-        $betData = [
+        $event = SportsEvent::factory()->create();
+
+        // Mock data for bet creation
+        $data = [
             'user_id' => $user->id,
-            'event_id' => $sportsEvent->id,
-            'amount' => 100,
-            'odds' => 2.5,
+            'event_id' => $event->id,
+            'amount' => 50.00,
+            'odds' => 2.00
         ];
 
-        $response = $this->postJson('/api/bets', $betData);
+        $response = $this->post('/api/bets', $data);
 
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('bets', $betData);
+        // Verify redirection to the 'welcome' route
+        $response->assertStatus(302)
+                 ->assertRedirect(route('welcome'));
+
+        $response->assertSessionHas('success', 'Usuario creado correctamente.');
+
+        $this->assertDatabaseHas('bets', [
+            'user_id' => $user->id,
+            'event_id' => $event->id,
+            'amount' => 50.00,
+            'odds' => 2.00,
+            'status' => 'pending',
+        ]);
+
+        // Verify that the user's balance was decreased by the bet amount
+        $user->refresh();
+        $this->assertEquals(50.00, $user->balance);
     }
 
       /** @test */
