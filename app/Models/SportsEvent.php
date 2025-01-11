@@ -15,6 +15,6 @@ class SportsEvent extends Model{
     ];
 
     public function bets(){
-        return $this->hasMany(Bet::class);
+        return $this->hasMany(Bet::class, 'event_id');
     }
 }

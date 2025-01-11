@@ -24,4 +24,11 @@ class SportsEventController extends Controller{
         return response()->json($event, 201);
     }
 
+
+    //NOTE: Get all events with bets
+    public function index(){
+        $events = SportsEvent::withCount('bets')->get();
+        return response()->json($events);
+    }
+
 }

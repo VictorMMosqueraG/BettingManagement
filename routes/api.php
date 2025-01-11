@@ -27,7 +27,7 @@ Route::put('users/{id}', [UserController::class, 'update']); //UPDATE
 
 //------SPORTS EVENT-----
 Route::post('sports-events', [SportsEventController::class, 'store']);
-
+Route::get('sports-events', [SportsEventController::class, 'index']);
 
 //------BET-----
 Route::post('bets', [BetController::class, 'store']);
