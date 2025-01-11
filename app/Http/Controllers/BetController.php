@@ -50,4 +50,24 @@ class BetController extends Controller{
 
         return response()->json($query->get());
     }
+
+    //Update Bet Status
+    public function updateStatus(Request $request, $id){
+        $request->validate([
+            'status' => 'required|in:won,lost',
+        ]);
+
+        $bet = Bet::findOrFail($id);
+        $bet->status = $request->status;
+
+        if ($request->status === 'won') {
+            $user = User::findOrFail($bet->user_id);
+            $winAmount = $bet->amount * $bet->odds;
+            $user->balance += $winAmount;
+            $user->save();
+        }
+
+        $bet->save();
+        return response()->json($bet);
+    }
 }
