@@ -37,7 +37,11 @@ class BetController extends Controller{
         $user->balance -= $request->amount;
         $user->save();
 
-        return response()->json($bet, 201);
+        session()->flash('success', 'Usuario creado correctamente.');
+
+        sleep(2);//Simulate a delay
+
+        return redirect()->route('welcome');
     }
 
     //List Bets
@@ -69,5 +73,14 @@ class BetController extends Controller{
 
         $bet->save();
         return response()->json($bet);
+    }
+
+    //NOTE: Methods by views
+    public function create(){
+        $users = User::all();
+
+        $events = SportsEvent::all();
+
+        return view('bets.create', compact('users', 'events'));//Load the view
     }
 }
