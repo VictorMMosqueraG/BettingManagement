@@ -83,4 +83,26 @@ class BetController extends Controller{
 
         return view('bets.create', compact('users', 'events'));//Load the view
     }
+
+    public function indexShow($user_id){
+        //get the user
+        $user = User::findOrFail($user_id);
+
+        //get the answers of the user
+        $bets = Bet::join('sports_events', 'bets.event_id', '=', 'sports_events.id')
+        ->where('bets.user_id', $user->id)
+        ->select('bets.*', 'sports_events.name as event_name') // Traemos el nombre del evento
+        ->get();
+
+        //show the answers
+        return view('bets.index', compact('user', 'bets'));
+    }
+
+    public function selectUser(){  //get all users to show in the select
+        $users = User::all();
+
+        return view('selectUser', compact('users'));
+    }
+
+
 }

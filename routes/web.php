@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SportsEventController;
 use App\Http\Controllers\BetController;
 
 //-----User
-Route::get('users/create', [UserController::class, 'create'])->name('users.create');//Show forms
+Route::get('users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('users', [UserController::class, 'store'])->name('users.store');
 Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
@@ -34,6 +35,10 @@ Route::get('sportsevents', [SportsEventController::class, 'indexView'])->name('s
 //-----Bet
 Route::get('/bets/create', [BetController::class, 'create'])->name('bets.create'); // Añadido
 Route::post('/bets', [BetController::class, 'store'])->name('bets.store');
+// Ruta para mostrar las apuestas de un usuario
 Route::get('/bets/{user_id}', [BetController::class, 'indexShow'])->name('bets.index');
+// Ruta para actualizar el estado de una apuesta
 Route::get('/bets/{id}/update', [BetController::class, 'updateStatus'])->name('bets.updateStatus');
 
+// Ruta para seleccionar un usuario
+Route::get('select-user', [BetController::class, 'selectUser'])->name('selectUser');

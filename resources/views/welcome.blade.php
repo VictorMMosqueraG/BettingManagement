@@ -70,10 +70,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             margin: 10px;
-            width: 250px; /* Establecer un ancho fijo */
+            width: 250px;
         }
 
-        /* Efecto hover de los enlaces */
         .menu li a:hover {
             background-color: #4CAF50;
             color: white;
@@ -110,13 +109,11 @@
     </style>
 </head>
 <body>
-
     <!-- Contenedor para el menú -->
     <div class="menu-container">
         <h1>Bienvenido a la aplicación</h1>
         <p>Selecciona una opción para continuar:</p>
 
-        <!-- Menú con clases personalizadas para cada opción -->
         <ul class="menu">
             <li class="users-link">
                 <a href="{{ route('users.create') }}"><i class="fas fa-user-plus"></i> Registrar Usuario</a>
@@ -127,11 +124,11 @@
             <li class="bets-link">
                 <a href="{{ route('bets.create') }}"><i class="fas fa-basketball-ball"></i> Crear Apuesta</a>
             </li>
+            <li class="view-bets-link">
+                <a href="{{ route('selectUser') }}"><i class="fas fa-eye"></i> Ver Apuestas</a>
+            </li>
         </ul>
     </div>
-
-    <!-- Incluyendo los iconos -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
