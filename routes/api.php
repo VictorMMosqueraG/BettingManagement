@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SportsEventController;
+use App\Http\Controllers\BetController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +27,7 @@ Route::put('users/{id}', [UserController::class, 'update']); //UPDATE
 
 //------SPORTS EVENT-----
 Route::post('sports-events', [SportsEventController::class, 'store']);
+
+
+//------BET-----
+Route::post('bets', [BetController::class, 'store']);
