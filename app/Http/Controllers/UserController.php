@@ -21,7 +21,8 @@ class UserController extends Controller{
             'balance' => $request->balance,
         ]);
 
-        return response()->json($user, 201);
+        session()->flash('success', 'Usuario creado correctamente.');
+        return redirect()->route('users.create');//COMEBACK: Redirect to the other form
     }
 
     //NOTE: Update user
@@ -43,4 +44,8 @@ class UserController extends Controller{
         return response()->json($user);
     }
 
+    //NOTE: method to show the form
+    public function create(){
+        return view('Users.create'); //Load the view
+    }
 }
