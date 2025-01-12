@@ -73,12 +73,6 @@ Betting Management is a web application built with Laravel that allows users to 
     docker-compose exec app php artisan migrate
     ```
 
-3. Seed the database (optional):
-
-    ```sh
-    docker-compose exec app php artisan db:seed
-    ```
-
 ## Running Tests
 
 To run the tests, use the following command:
