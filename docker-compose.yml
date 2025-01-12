@@ -1,6 +1,22 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: betting-management-app
+    container_name: betting-management-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - laravel_network
+    depends_on:
+      - db
+
   db:
     image: mariadb:latest
     container_name: mariadb
@@ -15,6 +31,20 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - laravel_network
+
+  web:
+    image: nginx:alpine
+    container_name: betting-management-web
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - laravel_network
+    depends_on:
+      - app
 
 networks:
   laravel_network:

@@ -64,7 +64,7 @@ Betting Management is a web application built with Laravel that allows users to 
 1. Build and start the Docker containers:
 
     ```sh
-    docker-compose up -d
+    docker-compose up --build -d
     ```
 
 2. Run database migrations:
